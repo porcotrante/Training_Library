@@ -6,13 +6,21 @@ button, form{
     all:unset;
 }
 
+header{
+    text-align: center;
+    font-size: x-large;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1.5rem;
+    box-shadow: 0px 6px 5px 0px rgba(184,184,184,1);
+}
+
 .showForm{
     display: flex;
     color: black;
     border: 1px solid black;
     width: 200px;
-    height: 100px;
-    margin: 80px auto 0;
+    height: 80px;
+    margin: 30px auto 0;
     cursor: pointer;
     align-items: center;
     justify-content: center;
@@ -73,4 +81,21 @@ button, form{
     background-color: white;
     border-radius: 15px;
     cursor: pointer;
+}
+
+.bookGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 60%;
+    margin: 50px auto;
+    gap: 2rem;
+}
+
+.bookGrid>*{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    height: 400px;
+    border-radius: 15px;
+    background-color: gray;
 }
