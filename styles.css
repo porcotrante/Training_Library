@@ -1,0 +1,76 @@
+body{
+    margin: 0;
+}
+
+button, form{
+    all:unset;
+}
+
+.showForm{
+    display: flex;
+    color: black;
+    border: 1px solid black;
+    width: 200px;
+    height: 100px;
+    margin: 80px auto 0;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+.bookForm{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    border-radius: 15px;
+    background-color: gray;
+    width: 300px;
+    height: 500px;
+    padding: .5rem 1.5rem 1.5rem;
+    justify-content: space-between;
+}
+
+.bookInput{
+    height: 1rem;
+    padding: .5rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+}
+
+.formLabel{
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+}
+
+.formInputSection{
+    display: flex;
+    flex-direction: column;
+    flex: 4;
+    margin: 0 auto;
+    justify-content: space-around;
+}
+
+.formButtonSection{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1.5rem;
+}
+
+.formButton{
+    width: fit-content;
+    height: fit-content;
+    padding: .8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    background-color: white;
+    border-radius: 15px;
+    cursor: pointer;
+}
