@@ -11,48 +11,80 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 })
 
+function Book(title, author, date, pages, read){
+    this.title = title;
+    this.author = author;
+    this.date = date;
+    this.pages = pages;
+    this.read = read;
+}
+
+function createBookElement() {
+    const bookTitle = document.getElementById("title").value;
+    const bookAuthor = document.getElementById("author").value;
+    const bookDate = document.getElementById("date").value;
+    const bookPages = document.getElementById("pages").value;
+    const bookRead = document.getElementById("read").checked;
+
+    const book = new Book(
+        bookTitle,
+        bookAuthor,
+        bookDate,
+        bookPages,
+        bookRead
+    );
+
+    return book;
+}
+
+function createBookInfoContainer(book){
+    const title = document.createElement("p");
+    title.textContent = book.title;
+    title.classList.add("bookTitle");
+
+    const author = document.createElement("p");
+    author.textContent = book.author;
+    author.classList.add("bookInfo");
+
+    const date = document.createElement("p");
+    date.textContent = book.date;
+    date.classList.add("bookInfo");
+
+    const pages = document.createElement("p");
+    pages.textContent = book.pages;
+    pages.classList.add("bookInfo");
+
+    const infoContainer = document.createElement("div");
+    infoContainer.classList.add("bookInfoContainer");
+    infoContainer.appendChild(title);
+    infoContainer.appendChild(author);
+    infoContainer.appendChild(date);
+    infoContainer.appendChild(pages);
+
+    return infoContainer;
+}
+
 function createBookButtons() {
     const buttons = document.createElement("div");
     buttons.classList.add("bookButtons");
     buttons.appendChild(document.createElement("div"));
     buttons.appendChild(document.createElement("div"));
-    return buttons
+    return buttons;
 }
 
-function createBookElement() {
-    const bookTitle = document.createElement("p");
-    bookTitle.textContent = document.querySelector("#title").value
-    bookTitle.classList.add("bookTitle")
-
-    const bookAuthor = document.createElement("p")
-    bookAuthor.textContent = document.querySelector("#author").value
-    bookAuthor.classList.add("bookInfo")
-
-    const date = document.createElement("p")
-    date.textContent = document.querySelector("#date").value
-    date.classList.add("bookInfo")
-
-    const pages = document.createElement("p")
-    pages.textContent = document.querySelector("#pages").value
-    pages.classList.add("bookInfo")
-
-    const bookInfoContainer = document.createElement("div")
-    bookInfoContainer.classList.add("bookInfoContainer")
-
-    const book = document.createElement("div");
-    bookInfoContainer.appendChild(bookTitle)
-    bookInfoContainer.appendChild(bookAuthor)
-    bookInfoContainer.appendChild(date)
-    bookInfoContainer.appendChild(pages)
-    book.appendChild(bookInfoContainer)
-    book.appendChild(createBookButtons())
-
-    return book
+function bookClean(){
+    while (document.querySelector(".bookGrid").firstChild) {
+        document.querySelector(".bookGrid").firstChild.remove();
+    }
 }
 
-function renderBook(arr) {
-    for (i in arr) {
-        document.querySelector(".bookGrid").appendChild(arr[i]);
+function renderBook(bookArray) {
+    for (i in bookArray) {
+        const bookContainer = document.createElement("div");
+        bookContainer.appendChild(createBookInfoContainer(bookArray[i]));
+        bookContainer.appendChild(createBookButtons());
+
+        document.querySelector(".bookGrid").appendChild(bookContainer);
     }
 }
 
@@ -61,5 +93,6 @@ const books = [];
 
 form.addEventListener("submit", () =>{
     books.push(createBookElement());
+    bookClean();
     renderBook(books);
 })
