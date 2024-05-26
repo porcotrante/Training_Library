@@ -11,6 +11,14 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 })
 
+function createBookButtons() {
+    const buttons = document.createElement("div");
+    buttons.classList.add("bookButtons");
+    buttons.appendChild(document.createElement("div"));
+    buttons.appendChild(document.createElement("div"));
+    return buttons
+}
+
 function createBookElement() {
     const bookTitle = document.createElement("p");
     bookTitle.textContent = document.querySelector("#title").value
@@ -28,11 +36,17 @@ function createBookElement() {
     pages.textContent = document.querySelector("#pages").value
     pages.classList.add("bookInfo")
 
+    const bookInfoContainer = document.createElement("div")
+    bookInfoContainer.classList.add("bookInfoContainer")
+
     const book = document.createElement("div");
-    book.appendChild(bookTitle)
-    book.appendChild(bookAuthor)
-    book.appendChild(date)
-    book.appendChild(pages)
+    bookInfoContainer.appendChild(bookTitle)
+    bookInfoContainer.appendChild(bookAuthor)
+    bookInfoContainer.appendChild(date)
+    bookInfoContainer.appendChild(pages)
+    book.appendChild(bookInfoContainer)
+    book.appendChild(createBookButtons())
+
     return book
 }
 
@@ -45,7 +59,7 @@ function renderBook(arr) {
 const addBookButton = document.querySelector("#addBook");
 const books = [];
 
-addBookButton.addEventListener("click", () => {
+form.addEventListener("submit", () =>{
     books.push(createBookElement());
     renderBook(books);
 })

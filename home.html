@@ -20,27 +20,27 @@
                 <label for="title" class="formLabel">
                     Title:
                 </label>
-                <input type="text" name="title" id="title" class="bookInput">
+                <input type="text" name="title" id="title" class="bookInput" required>
             </section>
             <section style="margin: 10px auto;">
                 <label for="author" class="formLabel">
                     Author:
                 </label>
-                <input type="text" name="author" id="author" class="bookInput">
+                <input type="text" name="author" id="author" class="bookInput" required>
             </section>
             <section style="margin: 10px auto;">
                 <label for="date" class="formLabel">
                     Release Date:
                 </label>
-                <input type="text" name="date" id="date" class="bookInput">
+                <input type="text" name="date" id="date" class="bookInput" required>
             </section>
             <section style="margin: 10px auto;">
                 <label for="pages" class="formLabel">
-                    Nummber of Pages:
+                    Number of Pages:
                 </label>
-                <input type="text" name="pages" id="pages" class="bookInput">
+                <input type="text" name="pages" id="pages" class="bookInput" required>
             </section>
-            <section style="margin: 10px auto;">
+            <section style="margin: 10px auto; display: flex; align-items: center;">
                 <label for="read" class="formLabel" style="display: inline-block;">
                     Read?
                 </label>
@@ -48,10 +48,10 @@
             </section>
         </section>
         <section style="flex: 1;" class="formButtonSection">
-            <button class="formButton" onclick="hide()">
+            <button class="formButton" onclick="hide()" type="button">
                 Back
             </button>
-            <button class="formButton" id="addBook">
+            <button class="formButton" id="addBook" type="submit">
                 Confirm
             </button>
         </section>
