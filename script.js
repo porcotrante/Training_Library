@@ -64,27 +64,44 @@ function createBookInfoContainer(book){
     return infoContainer;
 }
 
-function createBookButtons() {
-    const buttons = document.createElement("div");
-    buttons.classList.add("bookButtons");
-    buttons.appendChild(document.createElement("div"));
-    buttons.appendChild(document.createElement("div"));
-    return buttons;
+function createBookRead(read) {
+    const bookRead = document.createElement("div");
+    bookRead.classList.add("bookRead")
+
+    const label = document.createElement("p");
+    label.textContent = "Read"
+
+    const check = document.createElement("input")
+    check.type = "checkbox"
+    check.checked = read
+
+    bookRead.appendChild(label)
+    bookRead.appendChild(check)
+
+    return bookRead;
 }
 
-function bookClean(){
-    while (document.querySelector(".bookGrid").firstChild) {
-        document.querySelector(".bookGrid").firstChild.remove();
-    }
+function createBookButtons(book) {
+    const buttons = document.createElement("div");
+    buttons.classList.add("bookButtons");
+    buttons.appendChild(createBookRead(book.read));
+    buttons.appendChild(document.createElement("div"));
+    return buttons;
 }
 
 function renderBook(bookArray) {
     for (i in bookArray) {
         const bookContainer = document.createElement("div");
         bookContainer.appendChild(createBookInfoContainer(bookArray[i]));
-        bookContainer.appendChild(createBookButtons());
+        bookContainer.appendChild(createBookButtons(bookArray[i]));
 
         document.querySelector(".bookGrid").appendChild(bookContainer);
+    }
+}
+
+function bookClean(){
+    while (document.querySelector(".bookGrid").firstChild) {
+        document.querySelector(".bookGrid").firstChild.remove();
     }
 }
 
