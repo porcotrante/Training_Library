@@ -146,3 +146,9 @@ input[type="checkbox"]{
     font-size: larger;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.removeBook{
+    width: 25%;
+    fill: #ffffff;
+    cursor: pointer;
+}

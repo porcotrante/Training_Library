@@ -11,7 +11,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 })
 
-function Book(title, author, date, pages, read){
+function Book(title, author, date, pages, read,id){
     this.title = title;
     this.author = author;
     this.date = date;
@@ -19,7 +19,7 @@ function Book(title, author, date, pages, read){
     this.read = read;
 }
 
-function createBookElement() {
+function createBookElement(id) {
     const bookTitle = document.getElementById("title").value;
     const bookAuthor = document.getElementById("author").value;
     const bookDate = document.getElementById("date").value;
@@ -33,6 +33,8 @@ function createBookElement() {
         bookPages,
         bookRead
     );
+
+    book.id = id
 
     return book;
 }
@@ -81,11 +83,23 @@ function createBookRead(read) {
     return bookRead;
 }
 
-function createBookButtons(book) {
+function createBookButtons(book, id) {
     const buttons = document.createElement("div");
     buttons.classList.add("bookButtons");
     buttons.appendChild(createBookRead(book.read));
-    buttons.appendChild(document.createElement("div"));
+
+    const remove = document.createElement("img");
+    remove.classList.add("removeBook");
+    remove.src = "./images/trash-can-outline.svg";
+    remove.id = id.toString();
+
+    remove.addEventListener("click", () => {
+        delete books[Number(remove.id)];
+        bookClean();
+        renderBook(books);
+    })
+    buttons.appendChild(remove);
+
     return buttons;
 }
 
@@ -93,7 +107,7 @@ function renderBook(bookArray) {
     for (i in bookArray) {
         const bookContainer = document.createElement("div");
         bookContainer.appendChild(createBookInfoContainer(bookArray[i]));
-        bookContainer.appendChild(createBookButtons(bookArray[i]));
+        bookContainer.appendChild(createBookButtons(bookArray[i], bookArray[i].id));
 
         document.querySelector(".bookGrid").appendChild(bookContainer);
     }
@@ -107,9 +121,11 @@ function bookClean(){
 
 const addBookButton = document.querySelector("#addBook");
 const books = [];
+let id = 0;
 
 form.addEventListener("submit", () =>{
-    books.push(createBookElement());
+    books.push(createBookElement(id));
+    id++;
     bookClean();
     renderBook(books);
 })
